@@ -1,0 +1,9 @@
+# Gorilla Grip: tooltip line shown on Gorilla Arms (added to their OnEquip by GorillaGrip.reds).
+GorillaGrip.GripUIData:
+  $type: gamedataGameplayLogicPackageUIData_Record
+  localizedDescription: LocKey#GorillaGrip-ArmsLine
+
+GorillaGrip.GripPackage:
+  $type: gamedataGameplayLogicPackage_Record
+  UIData: GorillaGrip.GripUIData
+  stackable: false
