@@ -36,7 +36,14 @@ public func HasGorillaArms(owner: wref<GameObject>) -> Bool {
 // At load: give SMGs and shotguns the game's dual-wield tag, and add the tooltip line to Gorilla Arms.
 class GorillaGripTweak extends ScriptableTweak {
   protected func OnApply() {
-    for record in TweakDBInterface.GetRecords(n"Item_Record") {
+    // Weapons are WeaponItem records, cyberware is Item records: GetRecords returns one exact type, so check both.
+    let tagged = 0;
+    let armsLines = 0;
+    let records = TweakDBInterface.GetRecords(n"WeaponItem_Record");
+    for extra in TweakDBInterface.GetRecords(n"Item_Record") {
+      ArrayPush(records, extra);
+    }
+    for record in records {
       let item = record as Item_Record;
       let type = gamedataItemType.Invalid;
       if IsDefined(item) && IsDefined(item.ItemType()) {
@@ -49,6 +56,7 @@ class GorillaGripTweak extends ScriptableTweak {
           ArrayPush(tags, n"DualWield");
           TweakDBManager.SetFlat(id + t".tags", tags);
           TweakDBManager.UpdateRecord(id);
+          tagged += 1;
         }
       } else {
         if Equals(type, gamedataItemType.Cyb_StrongArms) {
@@ -57,10 +65,12 @@ class GorillaGripTweak extends ScriptableTweak {
             ArrayPush(onEquip, t"GorillaGrip.GripPackage");
             TweakDBManager.SetFlat(id + t".OnEquip", onEquip);
             TweakDBManager.UpdateRecord(id);
+            armsLines += 1;
           }
         }
       }
     }
+    ModLog(n"GorillaGrip", s"Tagged \(tagged) SMG/shotgun records, added the tooltip line to \(armsLines) Gorilla Arms records.");
   }
 }
 
@@ -74,12 +84,12 @@ public func CanDualWield(owner: wref<GameObject>) -> Bool {
   return result;
 }
 
-// Double Trouble's weapon box (the red "Only affects ..." line at the top of the tooltip) gets a second line.
+// Double Trouble's weapon box (the red "Only affects ..." line at the top of the tooltip) gets the Gorilla Arms clause.
 @wrapMethod(PerkDisplayTooltipController)
 private func PerkWeaponGroupTypeToText(type: gamedataPerkWeaponGroupType) -> String {
   let text = wrappedMethod(type);
   if Equals(type, gamedataPerkWeaponGroupType.CoolDualWieldingPerkWeaponGroup) {
-    text = GetLocalizedText(text) + "\n" + GetLocalizedTextByKey(n"GorillaGrip-PerkNote");
+    text = GetLocalizedText(text) + "; " + GetLocalizedTextByKey(n"GorillaGrip-PerkNote");
   }
   return text;
 }
@@ -87,7 +97,7 @@ private func PerkWeaponGroupTypeToText(type: gamedataPerkWeaponGroupType) -> Str
 public class EnglishPackage extends ModLocalizationPackage {
   protected func DefineTexts() {
     this.Text("GorillaGrip-ArmsLine", "Reinforced grip actuators steady SMGs and shotguns one-handed: with Double Trouble, they can be dual-wielded.");
-    this.Text("GorillaGrip-PerkNote", "With Gorilla Arms: also SMGs and Shotguns");
+    this.Text("GorillaGrip-PerkNote", "equipping Gorilla Arms extends this to SMGs and Shotguns");
   }
 }
 

@@ -4,12 +4,25 @@ Gorilla Arms let V dual-wield SMGs and shotguns.
 
 Patch 2.5 added dual-wielding through the **Double Trouble** perk (Cool), limited to pistols and revolvers. Gorilla Grip extends it: while **Gorilla Arms** are equipped, their reinforced grip actuators steady heavier guns one-handed, so SMGs and shotguns can be paired too. Without Gorilla Arms, everything stays vanilla.
 
+## Screenshots
+
+The inspiration, from *Cyberpunk: Edgerunners*:
+
+![Rebecca dual-wielding Guts in Cyberpunk: Edgerunners](screenshots/edgerunners-reference.jpg)
+<sub>Still from *Cyberpunk: Edgerunners* (Studio Trigger / CD PROJEKT RED). Not covered by this mod's license.</sub>
+
+V with Gorilla Arms, dual-wielding two Guts in Corpo Plaza:
+
+![V dual-wielding two Guts shotguns in Corpo Plaza at night](screenshots/dual-guts-corpo-plaza.jpg)
+
+![V firing two Guts shotguns at once](screenshots/dual-guts-firing.jpg)
+
 ## Features
 
 - With Gorilla Arms equipped and Double Trouble unlocked, SMGs and shotguns (including double-barrel shotguns and modded weapons of those types) can be dual-wielded.
 - Without Gorilla Arms, only pistols and revolvers can be dual-wielded, as in vanilla. Removing Gorilla Arms unequips the off-hand SMG or shotgun.
 - Fits the game's UI:
-  - Double Trouble's weapon box reads *"Only affects Power Pistols and Power Revolvers"* and, on a second line, *"With Gorilla Arms: also SMGs and Shotguns"*.
+  - Double Trouble's weapon box reads *"Only affects Power Pistols and Power Revolvers; equipping Gorilla Arms extends this to SMGs and Shotguns"*.
   - Gorilla Arms get a tooltip line: *"Reinforced grip actuators steady SMGs and shotguns one-handed: with Double Trouble, they can be dual-wielded."*
 - No new perk, no save data, no animation replacement. It reuses the game's own dual-wield system.
 
@@ -42,9 +55,9 @@ Unpair any dual-wielded SMGs or shotguns first, then remove the two files. Nothi
 
 ## How it works
 
-- At load, a Codeware `ScriptableTweak` adds the game's `DualWield` tag to every SMG and shotgun record and adds the tooltip line to Gorilla Arms.
+- At load, a Codeware `ScriptableTweak` goes through all weapon and item records: it adds the game's `DualWield` tag to every SMG and shotgun and adds the tooltip line to Gorilla Arms. The counts are written to the redscript log.
 - A wrap of `gameItemData.CanDualWield` keeps those weapon types dual-wieldable only while an item of type `Cyb_StrongArms` is equipped in the arms cyberware slot.
-- A wrap of the perk tooltip adds the second line to Double Trouble's weapon box.
+- A wrap of the perk tooltip adds the Gorilla Arms clause to Double Trouble's weapon box.
 - Texts are registered through Codeware's localization system (English).
 
 ## License
