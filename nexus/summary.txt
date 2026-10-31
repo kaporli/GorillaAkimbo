@@ -1,0 +1,1 @@
+Gorilla Arms let V dual-wield SMGs and shotguns. Patch 2.5's Double Trouble perk only pairs pistols and revolvers; with Gorilla Arms equipped, their reinforced grip extends it to SMGs and shotguns, including modded ones. Fits the game's UI with new tooltip lines. No new perk, no save data, uses the game's own dual-wield system.

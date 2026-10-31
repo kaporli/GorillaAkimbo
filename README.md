@@ -39,9 +39,11 @@ V with Gorilla Arms, dual-wielding two Guts in Corpo Plaza:
 Extract the archive into the Cyberpunk 2077 game folder, or install it with Mod Organizer 2 or Vortex. The files go to:
 
 ```
-r6/scripts/GorillaGrip/GorillaGrip.reds
-r6/tweaks/GorillaGrip/GorillaGrip.yaml
+r6/scripts/GorillaAkimbo/GorillaAkimbo.reds
+r6/tweaks/GorillaAkimbo/GorillaAkimbo.yaml
 ```
+
+Updating from 1.0.0 by hand: delete the old `r6/scripts/GorillaGrip` and `r6/tweaks/GorillaGrip` folders first.
 
 ## Uninstallation
 

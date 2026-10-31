@@ -1,0 +1,57 @@
+[size=5][b]Gorilla Arms let V dual-wield SMGs and shotguns.[/b][/size]
+
+Patch 2.5 added dual-wielding through the [b]Double Trouble[/b] perk (Cool), limited to pistols and revolvers. This mod extends it: while [b]Gorilla Arms[/b] are equipped, their reinforced grip actuators steady heavier guns one-handed, so SMGs and shotguns can be paired too. Without Gorilla Arms, everything stays vanilla.
+
+[size=4][b]Features[/b][/size]
+[list]
+[*]With Gorilla Arms equipped and Double Trouble unlocked, SMGs and shotguns (including double-barrel shotguns and modded weapons of those types) can be dual-wielded.
+[*]Without Gorilla Arms, only pistols and revolvers can be dual-wielded, as in vanilla. Removing Gorilla Arms unequips the off-hand SMG or shotgun.
+[*]Fits the game's UI:
+[list]
+[*]Double Trouble's weapon box reads [i]"Only affects Power Pistols and Power Revolvers; equipping Gorilla Arms extends this to SMGs and Shotguns"[/i].
+[*]Gorilla Arms get a tooltip line: [i]"Reinforced grip actuators steady SMGs and shotguns one-handed: with Double Trouble, they can be dual-wielded."[/i]
+[/list]
+[*]No new perk, no save data, no animation replacement. It reuses the game's own dual-wield system.
+[/list]
+
+[size=4][b]Requirements[/b][/size]
+[list]
+[*]Cyberpunk 2077 [b]2.5[/b]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/2380]RED4ext[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/1511]redscript[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/4197]TweakXL[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/7780]Codeware[/url]
+[/list]
+
+[size=4][b]Installation[/b][/size]
+Install with Mod Organizer 2 or Vortex, or extract the archive into the Cyberpunk 2077 game folder. The files go to:
+[code]r6/scripts/GorillaAkimbo/GorillaAkimbo.reds
+r6/tweaks/GorillaAkimbo/GorillaAkimbo.yaml[/code]
+Updating from 1.0.0 by hand: delete the old [i]r6/scripts/GorillaGrip[/i] and [i]r6/tweaks/GorillaGrip[/i] folders first.
+
+[size=4][b]Uninstallation[/b][/size]
+Unpair any dual-wielded SMGs or shotguns first, then remove the two files. Nothing is written to your save.
+
+[size=4][b]Known limitations[/b][/size]
+[list]
+[*]SMGs and shotguns use the game's pistol dual-wield animations, so some reloads and hand poses look unusual.
+[*]Double Trouble's own bonuses (recoil, spread, Heywood Hurricane) follow the game's rules; this mod only changes which weapons can be paired.
+[*]Photo mode's weapon poses hold a single gun, so dual-wielding only shows in gameplay.
+[*]Other mods that change which weapons can be dual-wielded (for example Expanded Dual Wielding or Dual Wield Anything) do the same job in a different way. Use one of them.
+[/list]
+
+[size=4][b]How it works[/b][/size]
+[list]
+[*]At load, a Codeware ScriptableTweak goes through all weapon and item records: it adds the game's DualWield tag to every SMG and shotgun and adds the tooltip line to Gorilla Arms.
+[*]A wrap of gameItemData.CanDualWield keeps those weapon types dual-wieldable only while an item of type Cyb_StrongArms is equipped in the arms cyberware slot.
+[*]A wrap of the perk tooltip adds the Gorilla Arms clause to Double Trouble's weapon box.
+[*]Texts are registered through Codeware's localization system (English).
+[/list]
+
+[size=4][b]Credits[/b][/size]
+[list]
+[*]Inspired by Rebecca in [i]Cyberpunk: Edgerunners[/i] (Studio Trigger / CD PROJEKT RED). The reference still is theirs.
+[*]psiberx for Codeware and TweakXL, jac3km4 for redscript, WopsS for RED4ext.
+[/list]
+
+Source code: [url=https://github.com/kaporli/gorilla-akimbo]github.com/kaporli/gorilla-akimbo[/url]

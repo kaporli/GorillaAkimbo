@@ -1,0 +1,9 @@
+# Gorilla Akimbo: tooltip line shown on Gorilla Arms (added to their OnEquip by GorillaAkimbo.reds).
+GorillaAkimbo.GripUIData:
+  $type: gamedataGameplayLogicPackageUIData_Record
+  localizedDescription: LocKey#GorillaAkimbo-ArmsLine
+
+GorillaAkimbo.GripPackage:
+  $type: gamedataGameplayLogicPackage_Record
+  UIData: GorillaAkimbo.GripUIData
+  stackable: false
